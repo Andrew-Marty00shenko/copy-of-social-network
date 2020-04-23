@@ -39,7 +39,7 @@
     position: relative;
 }
 
-.avatar__setting .settings{
+ .settings {
     position: absolute;
     padding: 10px 20px 10px 35px;
     bottom: 18px;
@@ -48,10 +48,44 @@
     color: rgb(221, 221, 221);
     font-weight: 400;
     width: 200px;
+    animation-name: settings; 
+    animation-duration: .5s;
+}
+
+@keyframes settings{
+    from{
+        height: 0px;
+        opacity: 0;
+    }
+    to{
+        height: 85px;
+        opacity: 1;
+    }
 }
 
 .none{
-    display: none
+    position: absolute;
+    padding: 10px 20px 10px 35px;
+    bottom: 18px;
+    left: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(221, 221, 221);
+    font-weight: 400;
+    width: 200px;
+    animation-name: invise; 
+    animation-duration: .5s;
+    opacity: 0;
+}
+
+@keyframes invise{
+    from{
+        height: 85px;
+        opacity: 1;
+    }
+    to{
+        height: 0;
+        opacity: 0;
+    }
 }
 
 .settings li{
