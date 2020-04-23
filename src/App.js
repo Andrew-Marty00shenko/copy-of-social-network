@@ -4,6 +4,7 @@ import './App.css'
 
 import Header from './components/Header/Header'
 import NavBar from './components/NavBar/NavBar'
+import Profile from './components/Profile/Profile'
 
 
 const App = () => {
@@ -12,7 +13,7 @@ const App = () => {
       <Header />
       <div className="wrapper">
         <NavBar />
-
+        <Route path="/" render={() => <Profile />} />
       </div>
       {/* <NavBar /> */}
     </div>
