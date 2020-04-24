@@ -1,5 +1,6 @@
 import React from 'react'
 import './ProfileInfo.css'
+import MyPosts from './MyPosts/MyPosts'
 
 const ProfileInfo = () => {
     return (
@@ -53,6 +54,7 @@ const ProfileInfo = () => {
                     </ul>
                 </div>
             </div>
+            <MyPosts />
         </div>
     )
 }

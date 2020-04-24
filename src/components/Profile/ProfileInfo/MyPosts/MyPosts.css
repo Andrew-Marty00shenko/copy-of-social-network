@@ -1,0 +1,55 @@
+.my-posts{
+    margin-top: 15px;
+}
+
+.my-posts__block{
+    padding: 15px;
+    background-color: #fff;
+    width: 560px;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    box-sizing: border-box;
+    display: inline-flex;
+}
+
+.my-posts__block img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.my-posts__block input{
+    border: none;
+    margin-left: 10px;
+    width: 350px;
+}
+
+.my-posts__block .photo{
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 0%;
+    margin-right: 7px;
+}
+
+.my-posts__block .video{
+    margin-top: 5px;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+    border-radius: 0%;
+    margin-right: 7px;
+}
+
+.my-posts__block .music{
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 0%;
+    margin-right: 7px;
+}
+
+
+
