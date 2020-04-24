@@ -1,6 +1,6 @@
 import React from 'react'
 import './ProfileInfo.css'
-import MyPosts from './MyPosts/MyPosts'
+import MyPostsContainer from '../MyPosts/MyPostsContainer'
 
 const ProfileInfo = () => {
     return (
@@ -54,7 +54,7 @@ const ProfileInfo = () => {
                     </ul>
                 </div>
             </div>
-            <MyPosts />
+            <MyPostsContainer />
         </div>
     )
 }

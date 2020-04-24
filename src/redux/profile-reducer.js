@@ -3,8 +3,7 @@ const UPDATE_NEW_POST = 'UPDATE_NEW_POST'
 
 let initialState = {
     posts: [
-        { id: 1, message: 'Как дела?', likesCount: 0 },
-        { id: 2, message: 'Бла бла бла', likesCount: 0 },
+        { id: 1, message: 'Как дела?', likesCount: 0 }
     ],
     newPostText: ''
 }
@@ -20,7 +19,7 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText
+                newPostText: ''
             }
         }
         case UPDATE_NEW_POST: {
@@ -35,6 +34,6 @@ const profileReducer = (state = initialState, action) => {
 }
 
 export const addPostAC = () => ({ type: ADD_POST })
-export const updateNewPost = (text) => ({ type: UPDATE_NEW_POST, newText: text })
+export const updateNewPostAC = (text) => ({ type: UPDATE_NEW_POST, newText: text })
 
 export default profileReducer
