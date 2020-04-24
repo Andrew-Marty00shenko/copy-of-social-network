@@ -59,12 +59,52 @@
     max-width: 250px;
     min-height: 150px;
     max-height: 250px;
-    right: 0px;
     top: 35px;
+    right: 0;
     border: 1px solid #c5d0db;
     border-radius: 4px;
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    animation-name: show_menu; 
+    animation-duration: .3s;
+}
+
+@keyframes show_menu{
+    from{
+        top: 100px;
+        opacity: 0;
+    }
+    to{
+        top: 35px;
+        opacity: 1;
+    }
+}
+
+.hide_menu{
+    position: absolute;
+    min-width: 160px;
+    max-width: 250px;
+    min-height: 150px;
+    max-height: 250px;
+    right: 0px;
+    border: 1px solid #c5d0db;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    animation-name: hide_menu; 
+    animation-duration: .3s;
+    opacity: 0;
+}
+
+@keyframes hide_menu{
+    from{
+        top: 35px;
+        opacity: 1;
+    }
+    to{
+        top: 100px;
+        opacity: 0;
+    }
 }
 
 .show_menu ul{
