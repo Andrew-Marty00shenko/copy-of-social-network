@@ -23,16 +23,14 @@ class Post extends Component {
         this.setState({ showMenu: !this.state.showMenu })
     }
 
-    hideMenu = () => {
-        this.setState({ showMenu: !this.state.showMenu })
-    }
-
     render() {
         return (
             <div className="post-container">
                 <div className="post__block">
                     <div className="ava__post">
-                        <div className={`${this.state.showMenu ? 'show_menu' : 'hide_menu'}`} onMouseLeave={this.hideMenu} >
+                        <img className="user-ava" src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" />
+                        <img onClick={this.showMenus} className="close-icon" src={ArrowDown} alt="close" />
+                        <div className={`${this.state.showMenu ? 'show_menu' : 'hide_menu'}`}  >
                             <ul>
                                 <li>Удалить запись</li>
                                 <li>Архивировать запись</li>
@@ -41,8 +39,6 @@ class Post extends Component {
                                 <li>Выключить комметарии</li>
                             </ul>
                         </div>
-                        <img className="user-ava" src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" />
-                        <img onMouseEnter={this.showMenus} className="close-icon" src={ArrowDown} alt="close" />
                         <div className="user_name__date" >
                             <p>User name</p>
                             <span>date: {this.state.currentTime}</span>
