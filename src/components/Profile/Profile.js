@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Profile.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
+import Friends from './Friends/Friends';
 
 const Profile = () => {
     const [showBlock, setShowBlock] = useState(false);
@@ -25,6 +26,7 @@ const Profile = () => {
                 </div>
                 <button>Редактировать</button>
             </div>
+            <Friends />
             <ProfileInfo />
         </div>
     )

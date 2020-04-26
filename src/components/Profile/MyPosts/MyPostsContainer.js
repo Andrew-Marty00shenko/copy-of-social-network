@@ -1,4 +1,4 @@
-import { addPostAC, updateNewPostAC } from "../../../redux/profile-reducer"
+import { addPostAC, updateNewPostAC, deletePostAC } from "../../../redux/profile-reducer"
 import { connect } from "react-redux"
 import MyPosts from "./MyPosts"
 
@@ -16,6 +16,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         updateNewPost: (text) => {
             dispatch(updateNewPostAC(text))
+        },
+        deletePost: (id) => {
+            dispatch(deletePostAC(id))
         }
     }
 }

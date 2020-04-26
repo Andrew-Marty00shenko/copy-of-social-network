@@ -1,0 +1,37 @@
+.friends_component{
+    position: absolute;
+    top: 340px;
+    margin: 15px 0;
+    background-color: #fff;
+    width: 230px;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.friends_component_title{
+    display: flex;
+}
+
+.friends_component_title h6{
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.friends_component_title span{
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.friends_component_title p{
+    margin-left: 70px;
+    font-size: 14px;
+    color: #939393;
+    cursor: pointer;
+}
+
+.friends_component_title p:hover{
+    text-decoration: underline;
+}

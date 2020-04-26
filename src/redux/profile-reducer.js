@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST = 'UPDATE_NEW_POST'
+const DELETE_POST = 'DELETE_POST'
 
 let initialState = {
     posts: [
@@ -28,6 +29,12 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: action.newText
             }
         }
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: [state.posts.filter(posts => posts.id !== action.payload)]
+            }
+        }
         default:
             return state;
     }
@@ -35,5 +42,6 @@ const profileReducer = (state = initialState, action) => {
 
 export const addPostAC = () => ({ type: ADD_POST })
 export const updateNewPostAC = (text) => ({ type: UPDATE_NEW_POST, newText: text })
+export const deletePostAC = (id) => ({ type: DELETE_POST, payload: id })
 
 export default profileReducer
