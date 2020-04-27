@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './MyPosts.css'
 
 import PhotosSvg from '../../../assets/icons/photos.svg'
@@ -7,19 +7,14 @@ import VideoSvg from '../../../assets/icons/videos.svg'
 import Post from './Post/Post'
 
 const MyPosts = (props) => {
-
-    let myPosts = props.posts.map(i => {
-        return <Post message={i.message} likesCount={i.likesCount} />
+    let myPosts = props.posts.map(post => {
+        return <Post message={post.message} likesCount={post.likesCount} />
     })
 
     let onAddPost = (e) => {
         if (e.keyCode == '13') {
             props.addPost();
         }
-    }
-
-    const onPostRemove = (id) => {
-        props.deletePost(id);
     }
 
     let onPostChange = (e) => {

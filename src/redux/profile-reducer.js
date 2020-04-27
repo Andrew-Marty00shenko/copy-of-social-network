@@ -4,7 +4,7 @@ const DELETE_POST = 'DELETE_POST'
 
 let initialState = {
     posts: [
-        { id: 1, message: 'Как дела?', likesCount: 0 }
+        { id: 1, message: 'Как дела?', likesCount: 0 },
     ],
     newPostText: ''
 }
@@ -13,7 +13,7 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
-                id: state.posts.id + 1,
+                id: state.posts[state.posts.length - 1].id + 1,
                 message: state.newPostText,
                 likesCount: 0
             }

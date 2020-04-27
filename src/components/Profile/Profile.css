@@ -44,7 +44,7 @@
 
  .settings {
     position: absolute;
-    padding: 10px 20px 10px 35px;
+    padding: 10px 18px 10px 35px;
     bottom: 18px;
     left: 15px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -61,7 +61,7 @@
         opacity: 0;
     }
     to{
-        height: 85px;
+        height: 78px;
         opacity: 1;
     }
 }
