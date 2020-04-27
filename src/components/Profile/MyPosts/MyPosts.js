@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './MyPosts.css'
 
 import PhotosSvg from '../../../assets/icons/photos.svg'
@@ -8,6 +8,10 @@ import Post from './Post/Post'
 
 const MyPosts = (props) => {
 
+    let myPosts = props.posts.map(i => {
+        return <Post message={i.message} likesCount={i.likesCount} />
+    })
+
     let onAddPost = (e) => {
         if (e.keyCode == '13') {
             props.addPost();
@@ -15,7 +19,7 @@ const MyPosts = (props) => {
     }
 
     const onPostRemove = (id) => {
-        props.deletePost(id)
+        props.deletePost(id);
     }
 
     let onPostChange = (e) => {
@@ -35,11 +39,11 @@ const MyPosts = (props) => {
                     placeholder="Что у Вас нового?"
                     onChange={onPostChange}
                 />
-                <img onClick={onPostRemove} className="photo" src={PhotosSvg} alt="prhotos" />
+                <img className="photo" src={PhotosSvg} alt="prhotos" />
                 <img className="video" src={VideoSvg} alt="videos" />
                 <img className="music" src={MusicSvg} alt="music" />
             </div>
-            <Post onPostRemove={onPostRemove} posts={props.posts} />
+            {myPosts}
         </div>
     )
 }

@@ -11,32 +11,30 @@ const Post = (props) => {
     }
 
     return (
-        <div className="post-container">
-            <div className="post__block">
-                <div className="ava__post">
-                    <img className="user-ava" src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" />
-                    <img onClick={showMenus} className="close-icon" src={ArrowDown} alt="close" />
-                    <div className={`${showMenu ? 'show_menu' : 'hide_menu'}`}  >
-                        <ul>
-                            <li onClick={props.onPostRemove}>Удалить запись</li>
-                            <li>Архивировать запись</li>
-                            <li>Сохранить в закладках</li>
-                            <li>Закрепить</li>
-                            <li>Выключить комметарии</li>
-                        </ul>
-                    </div>
-                    <div className="user_name__date" >
-                        <p>User name</p>
-                        <span>date: 26/09/2022</span>
+        <div>
+            <div className="post-container">
+                <div className="post__block">
+                    <div className="ava__post">
+                        <img className="user-ava" src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" />
+                        <img onClick={showMenus} className="close-icon" src={ArrowDown} alt="close" />
+                        <div className={`${showMenu ? 'show_menu' : 'hide_menu'}`}  >
+                            <ul>
+                                <li>Удалить запись</li>
+                                <li>Архивировать запись</li>
+                                <li>Сохранить в закладках</li>
+                                <li>Закрепить</li>
+                                <li>Выключить комметарии</li>
+                            </ul>
+                        </div>
+                        <div className="user_name__date" >
+                            <p>User name</p>
+                            <span>date: 26/09/2022</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="existing_posts">
-                {props.posts.map(message => {
-                    return <div>
-                        {message.message}
-                    </div>
-                })}
+                <div className="existing_posts">
+                    {props.message}
+                </div>
             </div>
         </div >
     )
