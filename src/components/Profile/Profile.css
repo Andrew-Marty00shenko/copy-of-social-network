@@ -53,6 +53,7 @@
     width: 200px;
     animation-name: settings; 
     animation-duration: .5s;
+    animation-delay: none;
 }
 
 @keyframes settings{

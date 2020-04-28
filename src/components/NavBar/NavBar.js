@@ -18,7 +18,7 @@ const NavBar = () => {
             <li>
                 <div>
                     <img src={HomeSvg} alt="home" />
-                    <NavLink to="/">Моя страница</NavLink>
+                    <NavLink to="/profile">Моя страница</NavLink>
                 </div>
             </li>
             <li>
@@ -30,7 +30,7 @@ const NavBar = () => {
             <li>
                 <div>
                     <img src={MessageSvg} alt="messages" />
-                    <NavLink to="/messages">Сообщения</NavLink>
+                    <NavLink to="/dialogs">Сообщения</NavLink>
                 </div>
             </li>
             <li>
