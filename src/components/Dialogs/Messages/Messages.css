@@ -1,0 +1,8 @@
+.messages{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.messges:hover{
+    background-color: #e9e9ee;
+}

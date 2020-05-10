@@ -1,0 +1,30 @@
+.dialogs-container{
+    margin: 20px 15px 0px 20px;
+}
+
+.dialogs-top{
+    padding: 15px;
+    width: 570px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: relative;
+}
+
+.dialogs-filter input{
+    border: none;
+    padding: 3px 20px 3px 15px;
+    border-bottom: rgb(119, 101, 101);
+}
+
+.dialogs-icon_search{
+    position: absolute;
+    height: 20px;
+    opacity: 1;
+    left: 10px;
+    top: 16px;
+}
+
+.dialogs-filter{
+    margin-bottom: 15px;
+}
+
