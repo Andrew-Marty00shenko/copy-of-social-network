@@ -1,8 +1,8 @@
-.messages{
-    margin-top: 15px;
-    margin-bottom: 15px;
+.messages li{
+    padding: 15px;
 }
 
-.messges:hover{
+
+.messages li:hover{
     background-color: #e9e9ee;
 }

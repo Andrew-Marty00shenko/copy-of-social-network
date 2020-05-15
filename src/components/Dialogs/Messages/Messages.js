@@ -3,13 +3,10 @@ import './Messages.css'
 
 const Messages = (props) => {
     return (
-        <div className="messages">
-            <ul>
-                <li>{props.messages}</li>
-            </ul>
-            <hr style={{ opacity: 0.3, marginTop: '15px' }} />
-        </div>
-
+        <ul className="messages">
+            <li>{props.messages}</li>
+            <hr style={{ opacity: 0.3 }} />
+        </ul>
     )
 }
 
