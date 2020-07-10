@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import './Header.scss'
 import VkIcon from '../../assets/icons/vk.svg'
 import BellSvg from '../../assets/icons/sound.svg'
@@ -10,23 +10,35 @@ import { NavLink, useHistory } from 'react-router-dom';
 import ArrowDown from '../..//assets/icons/arrow-down.svg'
 
 const Header = () => {
-    const [showBlock, setShowBlock] = useState(false)
+    const [showBlock, setShowBlock] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
     const userName = useSelector(state => state.auth.login, shallowEqual);
     const isAuth = useSelector(state => state.auth.isAuth, shallowEqual);
+    const node = useRef();
+
+    const handleClickOutside = useCallback(e => {
+        if (node.current.contains(e.target)) {
+            return setShowBlock(true);;
+        }
+        setShowBlock(false);
+    }, [node]);
 
     useEffect(() => {
+        if (showBlock) {
+            document.addEventListener("click", handleClickOutside);
+        } else {
+            document.removeEventListener("click", handleClickOutside);
+        }
         dispatch(getUserProfile());
-    }, [dispatch, isAuth]);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, [dispatch, handleClickOutside, showBlock]);
 
     const handleClick = () => {
         dispatch(logout());
-        history.push("/login")
-    }
-
-    const openMenu = () => {
-        setShowBlock(!showBlock)
+        history.push("/login");
     }
 
     return (
@@ -41,11 +53,11 @@ const Header = () => {
                 <img className="bell" src={BellSvg} alt="bell icon" />
             </div>
             <div className="ava_user-name">
-                <div className="user__Name">
+                <div ref={node} className="user__Name">
                     {isAuth && <img className="close-icon" src={ArrowDown} alt="" />}
                     {isAuth
                         ? <div className="user-Name__settings">
-                            <span onClick={openMenu} >{userName}</span>
+                            <span onClick={handleClickOutside} >{userName}</span>
                             <div className={`${showBlock ? "show-block" : "hide-block"}`}>
                                 <div>{userName}</div>
                                 <hr />

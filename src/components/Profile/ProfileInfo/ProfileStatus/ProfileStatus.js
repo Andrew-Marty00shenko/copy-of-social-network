@@ -20,7 +20,6 @@ const ProfileStatus = ({ status }) => {
     }, []);
 
     useEffect(() => {
-        console.log("rerender")
         if (editStatus) {
             document.addEventListener("mousedown", handleClickOutside);
         } else {
