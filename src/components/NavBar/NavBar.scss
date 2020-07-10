@@ -1,0 +1,25 @@
+.nav{
+    margin-top: 10px;
+    width: 170px;
+}
+
+.nav li{
+    width: 170px;
+    padding: 5px ;
+    color :#274d8a;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+}
+
+.nav li:hover{
+    background: #c0d5f6
+}
+
+.nav  img{
+    margin-right: 15px;
+    width: 17px;
+    height: 17px;
+}

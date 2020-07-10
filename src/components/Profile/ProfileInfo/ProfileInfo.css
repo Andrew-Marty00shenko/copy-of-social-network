@@ -48,7 +48,7 @@
     text-decoration: none;
 }
 
-.profile-info__user button{
+.profile-info__user .profile-info__name{
     margin-top: 15px;
     width: 100%;
     border: none;
@@ -58,7 +58,7 @@
     padding: 7px;
 }
 
-.profile-info__user button:hover{
+.profile-info__user .profile-info__name:hover{
     background-color: #cde0f7;
     border-radius: 4px;
     transition: .2s;

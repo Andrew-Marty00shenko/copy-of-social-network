@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import './Post.css'
-
 import ArrowDown from '../../../../assets/icons/arrow-down.svg'
 
-const Post = (props) => {
+const Post = ({ id, message, deletePost }) => {
     const [showMenu, setShowMenu] = useState(false)
 
     const showMenus = () => {
         setShowMenu(!showMenu);
     }
+
+    const removePost = useCallback(id => {
+        deletePost(id);
+    }, [deletePost])
 
     return (
         <div className="post-container" >
@@ -18,7 +21,7 @@ const Post = (props) => {
                     <img onClick={showMenus} className="close-icon" src={ArrowDown} alt="close" />
                     <div className={`${showMenu ? 'show_menu' : 'hide_menu'}`}  >
                         <ul>
-                            <li>Удалить запись</li>
+                            <li onClick={() => removePost(id)} >Удалить запись</li>
                             <li>Архивировать запись</li>
                             <li>Сохранить в закладках</li>
                             <li>Закрепить</li>
@@ -32,7 +35,7 @@ const Post = (props) => {
                 </div>
             </div>
             <ul className="existing_posts">
-                {props.message}
+                {message}
             </ul>
         </div>
 

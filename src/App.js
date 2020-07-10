@@ -5,7 +5,7 @@ import './App.css'
 import Header from './components/Header/Header'
 import NavBar from './components/NavBar/NavBar'
 import Profile from './components/Profile/Profile'
-import DialogsContainer from './components/Dialogs/DialogsContainer'
+import Login from './components/Login/Login'
 
 
 const App = () => {
@@ -14,11 +14,9 @@ const App = () => {
       <Header />
       <div className="wrapper">
         <NavBar />
-        <Route path="/profile" render={() => <Profile />} />
-        <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path='/login' component={Login} />
+        <Route path="/profile/:userId?" component={Profile} />
       </div>
-
-      {/* <NavBar /> */}
     </div>
   )
 }

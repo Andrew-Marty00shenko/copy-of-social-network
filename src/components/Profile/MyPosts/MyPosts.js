@@ -5,23 +5,29 @@ import PhotosSvg from '../../../assets/icons/photos.svg'
 import MusicSvg from '../../../assets/icons/music.svg'
 import VideoSvg from '../../../assets/icons/videos.svg'
 import Post from './Post/Post'
+import { useSelector, useDispatch } from 'react-redux';
+import { addPost, updateNewPost, removePost } from '../../../redux/profile-reducer'
+import { useCallback } from 'react'
 
-const MyPosts = (props) => {
-    let myPosts = props.posts.map(post => {
-        return <Post message={post.message} likesCount={post.likesCount} />
-    })
+const MyPosts = () => {
+    const posts = useSelector(state => state.profilePage.posts);
+    const newPostText = useSelector(state => state.profilePage.newPostText);
+    const dispatch = useDispatch();
 
-    let onAddPost = (e) => {
-        if (e.keyCode == '13') {
-            props.addPost();
+    let onAddPost = useCallback(e => {
+        if (e.keyCode === 13) {
+            dispatch(addPost());
         }
-    }
+    }, [dispatch]);
 
-    let onPostChange = (e) => {
-        // let text = newPostElement.current.value;
+    const deletePost = useCallback(id => {
+        dispatch(removePost(id));
+    }, [dispatch])
+
+    let onPostChange = useCallback(e => {
         let text = e.currentTarget.value;
-        props.updateNewPost(text);
-    }
+        dispatch(updateNewPost(text));
+    }, [dispatch])
 
     return (
         <div className="my-posts">
@@ -29,7 +35,7 @@ const MyPosts = (props) => {
                 <img src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" />
                 <input
                     onKeyDown={onAddPost}
-                    value={props.newPostText}
+                    value={newPostText}
                     type="text"
                     placeholder="Что у Вас нового?"
                     onChange={onPostChange}
@@ -38,7 +44,9 @@ const MyPosts = (props) => {
                 <img className="video" src={VideoSvg} alt="videos" />
                 <img className="music" src={MusicSvg} alt="music" />
             </div>
-            {myPosts}
+            {posts.map(post => {
+                return <Post key={post.id} message={post.message} deletePost={deletePost} id={post.id} likesCount={post.likesCount} />
+            })}
         </div>
     )
 }

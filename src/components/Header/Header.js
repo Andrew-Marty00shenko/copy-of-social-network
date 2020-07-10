@@ -1,11 +1,34 @@
-import React from 'react'
-import './Header.css'
-
+import React, { useState } from 'react'
+import './Header.scss'
 import VkIcon from '../../assets/icons/vk.svg'
 import BellSvg from '../../assets/icons/sound.svg'
 import SearchSvg from '../../assets/icons/search.svg'
+import { useEffect } from 'react'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { getUserProfile, logout } from '../../redux/auth'
+import { NavLink, useHistory } from 'react-router-dom';
+import ArrowDown from '../..//assets/icons/arrow-down.svg'
 
 const Header = () => {
+    const [showBlock, setShowBlock] = useState(false)
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const userName = useSelector(state => state.auth.login, shallowEqual);
+    const isAuth = useSelector(state => state.auth.isAuth, shallowEqual);
+
+    useEffect(() => {
+        dispatch(getUserProfile());
+    }, [dispatch, isAuth]);
+
+    const handleClick = () => {
+        dispatch(logout());
+        history.push("/login")
+    }
+
+    const openMenu = () => {
+        setShowBlock(!showBlock)
+    }
+
     return (
         <div className="header">
             <div className="header-items">
@@ -18,8 +41,24 @@ const Header = () => {
                 <img className="bell" src={BellSvg} alt="bell icon" />
             </div>
             <div className="ava_user-name">
-                <div className="user__Name">User Name</div>
-                <img className="header-ava" src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" />
+                <div className="user__Name">
+                    {isAuth && <img className="close-icon" src={ArrowDown} alt="" />}
+                    {isAuth
+                        ? <div className="user-Name__settings">
+                            <span onClick={openMenu} >{userName}</span>
+                            <div className={`${showBlock ? "show-block" : "hide-block"}`}>
+                                <div>{userName}</div>
+                                <hr />
+                                <li onClick={handleClick}>Logout</li>
+                                <li>Help</li>
+                            </div>
+                        </div>
+                        :
+                        <NavLink to="login">
+                            <li>Login</li>
+                        </NavLink>
+                    }</div>
+                {/* <img className="header-ava" src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" /> */}
             </div>
         </div>
     )
