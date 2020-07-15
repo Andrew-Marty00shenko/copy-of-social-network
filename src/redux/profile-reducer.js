@@ -1,4 +1,4 @@
-import { profileApi } from "../API/API"
+import { profileApi, usersApi } from "../API/API"
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST = 'UPDATE_NEW_POST'
@@ -62,14 +62,12 @@ export const addPost = () => ({ type: ADD_POST });
 export const updateNewPost = (text) => ({ type: UPDATE_NEW_POST, newText: text });
 export const removePost = (id) => ({ type: DELETE_POST, payload: id });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
-export const setUserProfile = (userId) => ({ type: SET_USER_PROFILE, userId })
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
 export const getUserProfile = (userId) => dispatch => {
-    return profileApi.getUserProfile(userId)
+    return usersApi.getUserProfile(userId)
         .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(setUserProfile(res.data));
-            }
+            dispatch(setUserProfile(res.data));
         })
 }
 
@@ -77,7 +75,7 @@ export const getStatus = (userId) => dispatch => {
     return profileApi.getStatus(userId)
         .then(res => {
             dispatch(setStatus(res.data));
-        })
+        });
 }
 
 export const updateStatus = (status) => dispatch => {
@@ -86,7 +84,7 @@ export const updateStatus = (status) => dispatch => {
             if (res.data.resultCode === 0) {
                 dispatch(setStatus(status));
             }
-        })
+        });
 }
 
-export default profileReducer
+export default profileReducer;

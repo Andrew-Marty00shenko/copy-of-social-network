@@ -1,18 +1,16 @@
 import React from 'react'
 import './ProfileInfo.css'
 import MyPosts from '../MyPosts/MyPosts'
-import { useSelector, shallowEqual } from 'react-redux'
 import ProfileStatus from './ProfileStatus/ProfileStatus'
 
-const ProfileInfo = ({ status }) => {
-    const userName = useSelector(state => state.auth.login, shallowEqual);
+const ProfileInfo = ({ status, profile }) => {
 
     return (
         <div className="profile-info">
             <div className="profile-info__user">
                 <div className="user-name__user-status">
                     <div className="user-name">
-                        {userName}
+                        {profile ? profile.fullName : null}
                     </div>
                     <div className="user-status">
                         <ProfileStatus status={status} />

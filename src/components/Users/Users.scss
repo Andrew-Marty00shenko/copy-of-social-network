@@ -1,0 +1,52 @@
+.users{
+    margin: 20px;
+    padding: 15px;
+    background-color: #fff;
+    width: 560px;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    box-sizing: border-box;
+
+    &-info{
+        display: flex;
+
+        &__photo{
+
+            img{
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+            }
+        }
+
+        &__text{
+            margin-top: 10px;
+            margin-left: 10px;
+
+            &-name a{
+                text-decoration: none;
+                color: #2a5885;
+                font-weight: bold;
+                
+                &:hover{
+                    text-decoration: underline;
+                }    
+            }
+
+            &-message{
+                margin-top: 10px;
+                color: #36628f;
+                cursor: pointer;
+
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    hr{
+        margin: 10px 0; 
+        opacity: 0.3;
+    }
+}

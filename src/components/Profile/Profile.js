@@ -12,6 +12,7 @@ const Profile = () => {
     const isAuth = useSelector(state => state.auth.isAuth, shallowEqual);
     const authorizedUserId = useSelector(state => state.auth.userId);
     const status = useSelector(state => state.profilePage.status);
+    const profile = useSelector(state => state.profilePage.profile);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,17 +29,17 @@ const Profile = () => {
     }
 
     const handleShowBlock = () => {
-        setShowBlock(!showBlock)
+        setShowBlock(true)
     }
     const handleInviseBlock = () => {
-        setShowBlock(!showBlock);
+        setShowBlock(false);
     }
 
     return (
         <div className="profile-page">
-            <div className="profile-avatar" onMouseEnter={handleShowBlock} onMouseLeave={handleInviseBlock}>
+            <div className="profile-avatar" onMouseLeave={handleInviseBlock}>
                 <div className="avatar__setting" >
-                    <img src="https://sun9-4.userapi.com/impf/c849336/v849336730/6999e/RZAbcj5kt00.jpg?size=200x0&quality=90&sign=60345877c965fb6f810725b815e3233d" alt="" />
+                    <img onMouseEnter={handleShowBlock} src="https://vk.com/images/camera_200.png?ava=1" alt="" />
                     <div className={`${showBlock ? 'settings' : 'none'}`}>
                         <li> Обновить фотографию</li>
                         <li> Изменить миниатюру</li>
@@ -48,7 +49,7 @@ const Profile = () => {
                 <button>Редактировать</button>
             </div>
             <Friends />
-            <ProfileInfo status={status} />
+            <ProfileInfo status={status} profile={profile} />
         </div>
     )
 }
