@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react'
 import './Post.css'
 import ArrowDown from '../../../../assets/icons/arrow-down.svg'
 
-const Post = ({ id, message, deletePost }) => {
+const Post = ({ id, message, deletePost, userIcon, profile }) => {
     const [showMenu, setShowMenu] = useState(false)
     const node = useRef();
 
@@ -32,7 +32,7 @@ const Post = ({ id, message, deletePost }) => {
         <div className="post-container" >
             <div className="post__block">
                 <div ref={node} className="ava__post">
-                    <img className="user-ava" src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" />
+                    <img className="user-ava" src={profile ? profile.photos.small || userIcon : null} alt="icon" />
                     <img onClick={handleClickOutside} className="close-icon" src={ArrowDown} alt="close" />
                     <div className={`${showMenu ? 'show_menu' : 'hide_menu'}`}  >
                         <ul>

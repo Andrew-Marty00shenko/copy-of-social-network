@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 import { updateStatus } from '../../../../redux/profile-reducer';
 import { useCallback } from 'react';
 
-const ProfileStatus = ({ status }) => {
+const ProfileStatus = ({ status, userId }) => {
     const [editStatus, setEditStatus] = useState(false);
     const [profileStatus, setProfileStatus] = useState("");
     const dispatch = useDispatch();
@@ -45,9 +45,10 @@ const ProfileStatus = ({ status }) => {
             {profileStatus ?
                 <div className="profile-status__status" onClick={handleClickOutside}> {profileStatus}</div>
                 :
-                <li onClick={handleClickOutside}>
+                !userId ? <li onClick={handleClickOutside}>
                     Change status
-                </li>
+            </li> : null
+
             }
             <div className={`${editStatus ? "profile-status__edit" : "hide"}`}>
                 <input type="text" placeholder="Enter your status" value={profileStatus} onChange={handleChange} />

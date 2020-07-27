@@ -4,24 +4,42 @@ import './Login.scss';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { login } from '../../redux/auth';
 import { Redirect } from 'react-router-dom';
+import { required } from '../Common/FormValidators/FormValidators';
 
-const LoginForm = ({ handleSubmit, isLoading }) => {
+const RenderField = ({ meta: { touched, error }, input, label, type }) => {
+    return (
+        <div>
+            <input {...input} placeholder={label} type={type} />
+            {touched &&
+                ((error &&
+                    <div className="validation">
+                        {error}
+                    </div>))}
+        </div>
+    )
+}
 
+const LoginForm = ({ handleSubmit, isLoading, error }) => {
     return (
         <form onSubmit={handleSubmit} >
             <div>
-                <Field type="email" component="input" name="email" label="Email" placeholder="email" />
+                <Field validate={[required]} type="email" component={RenderField} name="email" label="Email" placeholder="email" />
             </div>
             <div >
-                <Field type="password" component="input" name="password" label="password" placeholder="password" />
+                <Field validate={[required]} type="password" component={RenderField} name="password" label="password" placeholder="password" />
             </div>
-            <button
-                type="submit"
-                style={{ marginTop: 5 }}
-                disabled={isLoading}
-            >
-                {isLoading ? "loading..." : "Sign in"}
-            </button>
+            {error ?
+                <div className="validation">
+                    {error}
+                </div>
+                : <button
+                    type="submit"
+                    style={{ marginTop: 5 }}
+                    disabled={isLoading}
+                >
+                    {isLoading ? "Loading..." : "Sign in"}
+                </button>
+            }
         </form>
     );
 };

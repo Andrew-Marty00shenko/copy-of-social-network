@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addPost, updateNewPost, removePost } from '../../../redux/profile-reducer'
 import { useCallback } from 'react'
 
-const MyPosts = () => {
+const MyPosts = ({ profile, userIcon }) => {
     const posts = useSelector(state => state.profilePage.posts);
     const newPostText = useSelector(state => state.profilePage.newPostText);
     const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const MyPosts = () => {
     return (
         <div className="my-posts">
             <div className="my-posts__block">
-                <img src="https://sun9-32.userapi.com/c849336/v849336730/699a2/YH3OtJVE20k.jpg?ava=1" alt="" />
+                <img src={profile ? profile.photos.small || userIcon : null} alt="icon" />
                 <input
                     onKeyDown={onAddPost}
                     value={newPostText}
@@ -45,7 +45,7 @@ const MyPosts = () => {
                 <img className="music" src={MusicSvg} alt="music" />
             </div>
             {posts.map(post => {
-                return <Post key={post.id} message={post.message} deletePost={deletePost} id={post.id} likesCount={post.likesCount} />
+                return <Post profile={profile} userIcon={userIcon} key={post.id} message={post.message} deletePost={deletePost} id={post.id} likesCount={post.likesCount} />
             })}
         </div>
     )

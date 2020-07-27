@@ -1,31 +1,26 @@
-import React, { useEffect } from 'react'
-import './Users.scss';
+import React, { useEffect, useCallback } from 'react'
+import CurrentUser from './CurrentUser/CurrentUser';
+import Paginate from '../Common/Pagination/Pagination';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { getUsers } from '../../redux/users';
-import { NavLink } from 'react-router-dom';
-import Preloader from '../Common/Preloader';
-import userPhoto from '../../assets/icons/user.png'
-import { useState } from 'react';
-import { useCallback } from 'react';
-import Axios from 'axios';
+import './Users.scss';
+import Preloader from '../Common/Preloader/Preloader';
 
 const Users = () => {
     const users = useSelector(state => state.usersPage.users, shallowEqual);
     const isFetching = useSelector(state => state.usersPage.isFetching, shallowEqual);
     const pageSize = useSelector(state => state.usersPage.pageSize, shallowEqual);
-    // const totalUsersCount = useSelector(state => state.usersPage.totalUsersCount, shallowEqual);
+    const totalUsersCount = useSelector(state => state.usersPage.totalUsersCount, shallowEqual);
     const currentPage = useSelector(state => state.usersPage.currentPage, shallowEqual);
     const dispatch = useDispatch();
 
-    const handleClick = useCallback(() => {
-        dispatch(getUsers(currentPage + 1, pageSize));
-    }, [currentPage, pageSize, dispatch]);
+    const onPageChanged = useCallback(pageNumber => {
+        dispatch(getUsers(pageNumber, pageSize));
+    }, [dispatch, pageSize]);
 
     useEffect(() => {
-        dispatch(getUsers(currentPage, pageSize))
-        window.addEventListener("click", () => handleClick());
-        return window.removeEventListener("click", () => handleClick());
-    }, []);
+        dispatch(getUsers(currentPage, pageSize));
+    }, [dispatch, currentPage, pageSize]);
 
     return (
         <>
@@ -34,30 +29,10 @@ const Users = () => {
                 <div className="users"  >
                     {
                         users.map(user => {
-                            return <div key={user.id}>
-                                <div className="users-info">
-                                    <div className="users-info__photo">
-                                        <NavLink to={`profile/${user.id}`}>
-                                            <img src={user.photos.small || userPhoto} alt="" />
-                                        </NavLink>
-                                    </div>
-                                    <div className="users-info__text">
-                                        <div className="users-info__text-name">
-                                            <NavLink to={`profile/${user.id}`}>
-                                                {user.name}
-                                            </NavLink>
-                                        </div>
-                                        <div className="users-info__text-message">
-                                            Write a message
-                                    </div>
-                                    </div>
-                                </div>
-                                <hr />
-                            </div>
+                            return <CurrentUser key={user.id} user={user} />
                         })
                     }
-                    {isFetching && 'Fetching more list items...'}
-                    <button onClick={handleClick}>click</button>
+                    <Paginate currentPage={currentPage} onPageChanged={onPageChanged} totalUsersCount={totalUsersCount} pageSize={pageSize} />
                 </div>
             }
         </>

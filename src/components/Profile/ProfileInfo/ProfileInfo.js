@@ -2,8 +2,11 @@ import React from 'react'
 import './ProfileInfo.css'
 import MyPosts from '../MyPosts/MyPosts'
 import ProfileStatus from './ProfileStatus/ProfileStatus'
+import { useState } from 'react'
 
-const ProfileInfo = ({ status, profile }) => {
+
+const ProfileInfo = ({ status, profile, userId, userIcon }) => {
+    const [editMode, setEditMode] = useState(false);
 
     return (
         <div className="profile-info">
@@ -13,16 +16,15 @@ const ProfileInfo = ({ status, profile }) => {
                         {profile ? profile.fullName : null}
                     </div>
                     <div className="user-status">
-                        <ProfileStatus status={status} />
+                        <ProfileStatus status={status} userId={userId} />
                     </div>
                     <hr style={{ background: '#d7d8db', opacity: 0.3, marginTop: '10px' }} />
                 </div>
                 <div className="user-info">
                     <ul>
-                        <li>День рождения:</li>
-                        <li>Город:</li>
-                        <li>Место учебы:</li>
-                        <li>Ссылка:</li>
+                        <div className="user-info__about">
+                            <li> Fullname:</li> <span>{profile.fullName}</span>
+                        </div>
                     </ul>
                 </div>
                 <button className="profile-info__name">Показать подробную информацию</button>
@@ -48,7 +50,7 @@ const ProfileInfo = ({ status, profile }) => {
                     </ul>
                 </div>
             </div>
-            <MyPosts />
+            <MyPosts userIcon={userIcon} profile={profile} />
         </div>
     )
 }

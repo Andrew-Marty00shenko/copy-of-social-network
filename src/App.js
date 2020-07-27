@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import './App.css'
 
 import Header from './components/Header/Header'
@@ -16,6 +16,7 @@ const App = () => {
       <Header />
       <div className="wrapper">
         <NavBar />
+        <Route exact path="/" render={() => <Redirect to="/profile" />} />
         <Route path='/login' component={Login} />
         <Route path="/profile/:userId?" component={Profile} />
         <Route path="/users" component={Users} />

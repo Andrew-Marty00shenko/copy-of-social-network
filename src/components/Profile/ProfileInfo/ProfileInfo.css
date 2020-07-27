@@ -79,3 +79,16 @@
     padding: 0% 30px;
 }
 
+.user-info__about{
+    display: flex;
+}
+
+.user-info__about li{
+   width: 150px;
+}
+
+.user-info__about span{
+    color:#2a5885;
+    margin-top: 9px;
+}
+

@@ -5,11 +5,10 @@ const UPDATE_NEW_POST = 'UPDATE_NEW_POST'
 const DELETE_POST = 'DELETE_POST'
 const SET_STATUS = 'SET_STASUS'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS'
 
 let initialState = {
-    posts: [
-        { id: 1, message: 'Как дела?', likesCount: 0 },
-    ],
+    posts: [],
     newPostText: '',
     profile: null,
     status: ''
@@ -19,7 +18,7 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
-                id: state.posts[state.posts.length - 1].id + 1,
+                id: Math.floor(Math.random() * 100),
                 message: state.newPostText,
                 likesCount: 0
             }
@@ -53,6 +52,12 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
+        case SAVE_PHOTO_SUCCESS: {
+            return {
+                ...state,
+                profile: { ...state.profile, photos: action.photos }
+            }
+        }
         default:
             return state;
     }
@@ -62,7 +67,8 @@ export const addPost = () => ({ type: ADD_POST });
 export const updateNewPost = (text) => ({ type: UPDATE_NEW_POST, newText: text });
 export const removePost = (id) => ({ type: DELETE_POST, payload: id });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
 export const getUserProfile = (userId) => dispatch => {
     return usersApi.getUserProfile(userId)
@@ -85,6 +91,14 @@ export const updateStatus = (status) => dispatch => {
                 dispatch(setStatus(status));
             }
         });
+}
+
+export const savePhoto = (file) => dispatch => {
+    return profileApi.savePhoto(file)
+        .then(res => {
+            dispatch(savePhotoSuccess(res.data.data.photos));
+            // console.log(res.data);
+        })
 }
 
 export default profileReducer;
